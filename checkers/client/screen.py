@@ -10,7 +10,7 @@ class screen:
         pygame.init()
 
     @staticmethod
-    def check_quit(self):
+    def check_quit():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
