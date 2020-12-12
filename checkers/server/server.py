@@ -1,7 +1,7 @@
 # Importing some stuff
 import socket
 import os
-from _thread import *
+import _thread
 
 # consts numbers and stuff
 HOST = 'localhost'
@@ -28,7 +28,7 @@ def main():
         while RUN:
             client, addr = server.accept()
             print(f"Got a connection from {addr}")
-            start_new_thread(on_new_client, (client,))
+            _thread.start_new_thread(on_new_client, (client,))
             ThreadCount += 1
             print(f"Thread number currently is: {ThreadCount}")
         server.close()
