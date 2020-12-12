@@ -3,7 +3,7 @@ import sys
 from socket import socket
 # local imports
 from checkers.client.screen import screen
-from checkers.client.objects.text_box import *
+from checkers.client.objects.label import *
 
 # Consts:
 # Network consts
@@ -14,9 +14,6 @@ PORT = 5555
 WIDTH = 1280
 HEIGHT = 720
 
-# Font Consts
-FONT = "Ariel"
-
 # Color Consts
 white = (255, 255, 255)
 
@@ -24,6 +21,8 @@ white = (255, 255, 255)
 def main():
     # Creates the screen
     s = screen(WIDTH, HEIGHT, "main", white)
+    font = pygame.font.Font(None, 64)
+
     # Uses With
     # also opens the socket
     with socket() as client:
@@ -40,7 +39,7 @@ def main():
         run = True
         while run:
             # Shows the text sample
-            t = text_box(data, FONT, 64, WIDTH // 2, 80, s.screen)
+            t = label(data, font, WIDTH // 2, 80, s.screen)
             # Updates the display using default command from pygame
             pygame.display.update()
             # changing run variable if the user wants to quit

@@ -2,20 +2,17 @@ import pygame
 
 
 class text_box:
-    def __init__(self, text, font, size, x, y, screen, color=(0, 0, 0), back=(255, 255, 255)):
+    def __init__(self, x, y, width, height, font, text="", color_inactive=pygame.Color("lightskyblue3"), color_active=pygame.Color("dodgerblue2")):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.color_inactive = color_inactive
+        self.color_active = color_active
         self.text = text
-        self.font = font
-        self.color = color
-        self.back = back
-        self.size = size
-        self.x = x
-        self.y = y
-        self.screen = screen
-        self.render_text()
+        self.txt_surface = font.render(text, True, self.color)
+        self.active = False
 
-    def render_text(self):
-        font = pygame.font.SysFont(self.font, self.size)
-        t = font.render(self.text, True, self.color, self.back)
-        textRect = t.get_rect()
-        textRect.center = (self.x, self.y)
-        self.screen.blit(t, textRect)
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos):
+                self.active = not self.active
+            else:
+                self.active = False
