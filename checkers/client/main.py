@@ -1,10 +1,9 @@
 # imports stuff
 import sys
 from socket import socket
-import pygame
 # local imports
 from checkers.client.screen import screen
-from checkers.client.objects import *
+from checkers.client.objects.text_box import *
 
 # Consts:
 # Network consts
@@ -41,7 +40,7 @@ def main():
         run = True
         while run:
             # Shows the text sample
-            text(FONT, 64, data, WIDTH // 2, 80, s.screen)
+            t = text_box(data, FONT, 64, WIDTH // 2, 80, s.screen)
             # Updates the display using default command from pygame
             pygame.display.update()
             # changing run variable if the user wants to quit
