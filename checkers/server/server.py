@@ -1,8 +1,7 @@
 # Importing some stuff
 import socket
 import os
-import _thread
-
+import threading
 # consts numbers and stuff
 HOST = 'localhost'
 PORT = 5555
@@ -23,12 +22,13 @@ def main():
         except Exception as e:
             print(e)
         print("The server has started")
-        server.listen()
+        server.listen(2)
         print("Server is listening...")
         while RUN:
             client, addr = server.accept()
             print(f"Got a connection from {addr}")
-            _thread.start_new_thread(on_new_client, (client,))
+            t = threading.Thread(target=on_new_client, args=(client, ))
+            t.start()
             ThreadCount += 1
             print(f"Thread number currently is: {ThreadCount}")
         server.close()
