@@ -2,6 +2,7 @@
 import socket
 import os
 import threading
+
 # consts numbers and stuff
 HOST = 'localhost'
 PORT = 5555
@@ -9,9 +10,7 @@ RUN = True
 
 
 def on_new_client(c):
-    c.send(f"Welcome to checkers".encode())
-    data = c.recv(1024).decode()
-    print(data)
+    c.send(f"Welcome to checkers!!!".encode())
 
 
 def main():
@@ -27,7 +26,7 @@ def main():
         while RUN:
             client, addr = server.accept()
             print(f"Got a connection from {addr}")
-            t = threading.Thread(target=on_new_client, args=(client, ))
+            t = threading.Thread(target=on_new_client, args=(client,))
             t.start()
             ThreadCount += 1
             print(f"Thread number currently is: {ThreadCount}")

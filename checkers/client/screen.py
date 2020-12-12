@@ -3,11 +3,15 @@ import sys
 
 
 class screen:
-    def __init__(self, width, height):
+    # Creates a new class of the screen object
+    def __init__(self, width, height, name, back):
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((width, height))
+        pygame.display.set_caption(name)
         pygame.init()
+        self.screen.fill(back)
+        self.back = back
 
     @staticmethod
     def check_quit():
