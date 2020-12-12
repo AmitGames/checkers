@@ -1,7 +1,10 @@
 from socket import socket
+import pygame
 
 HOST = 'localhost'
 PORT = 5555
+WIDTH = 1280
+HEIGHT = 720
 
 
 def main():
