@@ -10,5 +10,6 @@ def main():
         print(client.recv(1024).decode())
         client.send("IDK".encode())
 
+
 if __name__ == '__main__':
     main()
